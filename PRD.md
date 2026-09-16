@@ -32,7 +32,7 @@ Secondary: anyone testing a deployed link directly.
 
 ## 5. Functional requirements
 
-- **FR1**: Submit a long URL (optionally with a custom alias) and receive a short URL.
+- **FR1**: Submit a long URL (optionally with a custom alias) and receive a short URL. If a requested custom alias is already in use, the request is rejected with a 409 conflict error.
 - **FR2**: Visiting a short URL returns a 302 redirect to the original long URL.
 - **FR3**: Invalid or missing URLs are rejected with a clear error message.
 - **FR4**: Create requests are rate-limited per IP.
@@ -60,6 +60,8 @@ Secondary: anyone testing a deployed link directly.
 ## 8. Acceptance criteria
 
 - [ ] `POST /urls` returns a working short code for a valid URL
+- [ ] `POST /urls` accepts a valid custom alias and uses it as the short code
+- [ ] `POST /urls` rejects a duplicate custom alias with a 409 status
 - [ ] `GET /:code` redirects correctly, served from Redis on a cache hit
 - [ ] Missing or invalid `longUrl` returns a 400 with a clear message
 - [ ] The rate limiter blocks excessive create requests from one IP

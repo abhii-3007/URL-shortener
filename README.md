@@ -57,7 +57,8 @@ src/
 
 - [ ] Project scaffold
 - [ ] Database configuration
-- [ ] `POST /urls`
+- [ ] `POST /urls` (auto-generated codes)
+- [ ] `POST /urls` (custom aliases)
 - [ ] `GET /:code`
 - [ ] Redis cache-aside
 - [ ] Validation + rate limiting
