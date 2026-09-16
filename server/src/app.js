@@ -11,6 +11,7 @@ const createUrlLimiter = require('./middleware/rateLimiter');
 const redis = require('./lib/redisClient');
 
 const app = express();
+app.set('trust proxy', 1);
 
 // ---------------------------------------------------------------------------
 // Middleware
@@ -32,7 +33,7 @@ const PORT = process.env.PORT || 3000;
 
 app.post('/urls', createUrlLimiter, validateUrl, async (req, res) => {
   const { longUrl, customCode, expiresIn } = req.body;
-  
+
   const expiresAt = new Date(Date.now() + expiresIn * 1000);
 
   let connection;
